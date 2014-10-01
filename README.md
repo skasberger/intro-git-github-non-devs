@@ -1,86 +1,97 @@
-Intro Versionierung mit Git/GitHub für non-developer
+Intro Versioning with Git/GitHub for non-developer
 ==============================
 
-Einführung in die Versionierung von textbasierten Files mittels Git und GitHub auf der Semantic Media Wiki Conference am 1. Oktober 2014 in Wien.
+Introduction into Versioning of text-based Files with Git and GitHub at the Semantic Media Wiki Conference at 1. of October 2014 in Vienna.
 
-Zu Beginn gab es eine kleine Einführung in Software-Versionierung, Git und Github, bevor dann praktisch mit Git und GitHub Daten und Textfiles (Dokumentation) verwaltet wurde.
+At the beginning there was a small introductory presentation in software-versioning, git and github, before the practical part to use git and github for management of data and textfiles started.
 
-## EINFÜHRUNG
-Ordner erstellen.
+## Introduction
+Create folder.
 ```shell
-mkdir presentation
-cd presentation
+mkdir test
+cd test
 ```
 
-### REPO ERSTELLEN
-Git Repository erstellen.
+### Create Repo
+Create Git repository.
 ```shell
 git init
 git status
 ```
-.git Ordner ansehen
-Datei erstellen
+Check .git folder.
+
+Create file.
 ```shell
 touch profil.txt
 git status
 ```
 
 ### DATEIEN HINZUFÜGEN
-Datei stagen für commit.
+Stage file for commit.
 ```shell
 git add profil.txt
 git status
 ```
-Datei unstagen.
+Unstage file.
 ```shell
 git reset
 git status
 ```
-Datei aus Repository entfernen.
+Remove file out of repo.
 ```shell
 git rm --cached profil.txt
 git add profil.txt
 git status
 ```
 
-### DATEIEN COMMITEN
-Ein Commit ist das Erstellen eines statischen Punktes im Repository. Dieser kann immer wieder hergestellt und abgerufen werden.
+### Commit changes
+A commit is the creation of a static state of the repository (snapshot), which can be re-established whenever wanted.
 ```shell
 git commit -m"create profil.txt"
 git status
 git log 
 ```
 
-### DATEI LÖSCHEN
-Datei aus Repository und Filesystem löschen.
+### Delete file
+Remove file from repository and filesystem.
 ```shell
 git rm profil.txt
 git status
 ```
 
-### HISTORY ABWANDERN
-Zwischen Commits hin und herspringen.
+### Walk through history
+Switch between commits.
 ```shell
 git checkout <COMMITHASH>
 git checkout master
 ```
 
-### DIFF ANSEHEN
-Neue Datei erstellen und hinzufügen.
+### Check Diff's
+Create and add new file.
 ```shell
 touch data.csv
 git add data.csv
 git commit -m"create data.csv"
 ```
-Neue Zeilen zu Datei hinzufügen.
-EDIT csv
+Add lines to file.
+```text
+name;age;profession
+stefan;30;student
+sabine;28;designer
+
+```
+Add update.
 ```shell
 git add data.csv
 git commit -m"edit data.csv"
 git status
 ```
-EDIT csv
-Änderungen in Files ansehen.
+Add lines to file.
+```text
+manuel;45;painter
+
+```
+View changes in file.
 ```shell
 git diff --unstaged data.csv
 git commit -m"update data.csv"
@@ -89,9 +100,13 @@ git log
 git lol
 ```
 
-### ÄNDERUNGEN RÜCKGÄNGIG MACHEN
-EDIT csv
-Zustand der File vom HEAD wiederherstellen, also alle Änderungen verwerfen.
+### Reverse changes
+Add lines to file.
+```text
+sue;55;researcher
+
+```
+Discard changes of file back to HEAD.
 ```shell
 git reset HEAD data.csv
 git checkout -- data.csv
@@ -99,91 +114,100 @@ git status
 ```
 
 ### BRANCHEN
-Branches ansehen.
+View branches.
 ```shell
 git branch -v
-devel Branch erstellen.
+```
+Create devel branch.
+```shell
 git branch devel
 git branch -v
 git status
 ```
-COPY geojson
+Copy GeoJSON file.
+
 ```shell
+cp ../map.geojson .
 git status
 ```
-GeoJSON File hinzufügen.
+Add GeoJSON file to repo.
 ```shell
 git add map.geojson
 git commit -m"add map.geojson"
 ```
-Branch wechseln -> master
+Change branch -> master
 ```shell
 git checkout master
 git status
 ```
 ### MERGEN
-EDIT csv
-Änderungen hinzufügen
+Add lines to file.
+```text
+peter;12;
+
+```
+Add changes.
 ```shell
 git add data.csv
 git commit -m"add banker to data.csv"
 git status
 ```
-master-Branch mit devel-Branch mergen.
+Merge master-branch with devel-branch.
 ```shell
 git merge devel
 git checkout devel
 git lol
 ```
 
-### REPO AUF GITHUB ERSTELLEN
-Remote-Connections ansehen.
+### Create Repo at GitHub
+View remotes.
 ```shell
 git remote -v
 ```
-REPO erstellen
-Remote erstellen.
+Create repo.
 ```shell
 git remote add origin XXXX
 git remote -v
 git status
 ```
 
-### REPO UPLOAD
-Lokales Repository auf GitHub laden.
+### Upload local repot to GitHub 
+Upload local repo to GitHub.
 ```shell
 git pull origin master
 ```
 
-### REPO DOWNLOAD
-GitHub-Repository auf Rechner runter ziehen.
+### Download repo from GitHub
+Download repo on GitHub to local drive.
 ```shell
 git clone <REPOURL>
 ```
 
-### REPO UPDATE
-Lokales Repository mit dem ursprünglichen GitHub Repository aktualisieren (abgleichen).
+### Sync repo
+Syncronize local repo with original GitHub repo.
 ```shell
 git fetch 
 ```
 
-### Weiteres
-Hilfe:
+### Further
+Help:
 ```shell
 git help
 ```
 
-## Quellen
+## Sources
 - [git](http://git-scm.com/)
 - [GitHub](https://github.com)
 - [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 - [Buch: Pro Git](http://git-scm.com/book/de)
 
 ## FAQ
-### Wie oft soll man commiten?
-**Nach jeder relevanten Änderung bzw. wenn ein Block abgeschlossen ist.**
-### Was schreibt man in die Commit-Message?
-**Möglichst genau, was gemacht wurde, ohne einen Roman zu verfassen. Es geht darum, im nachhinein noch nachvollziehen zu können, was sich durch den Commit verändert hat. Sprachlich wird Englisch und Präsenz empfohlen.**
+
+### How often should I commit?
+**After every relevant change or when you finished a certain part.**
+
+### What should I write into the Commit-Message?
+**As much as you need in two years to fully understand, what was done in the changes. English and present tense is recommended.**
 
 
 
